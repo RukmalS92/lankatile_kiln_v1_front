@@ -1,0 +1,45 @@
+<!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="Id">
+      <th mat-header-cell *matHeaderCellDef> Controller. </th>
+      <td mat-cell *matCellDef="let element"> {{element.controllerID}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="logtime">
+      <th mat-header-cell *matHeaderCellDef> Log Time </th>
+      <td mat-cell *matCellDef="let element"> {{element.logtime}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="temperature">
+      <th mat-header-cell *matHeaderCellDef> Temperature </th>
+      <td mat-cell *matCellDef="let element"> {{element.temperature}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table> -->
+
+  <table style="width:100%">
+    <thead>
+      <tr>
+        <th>Controller id</th>
+        <th>Logtime</th>
+        <th>temperature</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor = "let element of tempElementArray">
+        <td>{{element.cid}}</td>
+        <td>{{element.logtime}}</td>
+        <td>{{element.temperature}}</td>
+      </tr>
+    </tbody>
+  </table>
+  
+
+  
+  
+
+
+
+

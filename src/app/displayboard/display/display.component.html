@@ -1,0 +1,50 @@
+<div class="main-background">
+    <div class="row">"
+        <div class="container">
+            <h4 class="text-primary text-center">-Kiln Main Dashboard-</h4>
+        </div>
+    </div>
+    <div class="row">"
+        <div class="container-fluid card-bg">
+            <h5 class="text-warning text-left">Temperature modules</h5>
+            <div class="row">
+                <div class="col">
+                    <app-temp [temperature] = "tempDataArray[0]" [controllerName] = "tempIDArray[0]"></app-temp>
+                </div>
+                <div class="col">
+                    <app-temp></app-temp>
+                </div>
+                <div class="col">
+                    <app-temp></app-temp>
+                </div>
+                <div class="col">
+                    <app-temp></app-temp>
+                </div>
+                <div class="col">
+                    <app-temp></app-temp>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div class="row">"
+        <div class="container-fluid  card-bg">
+            <h5 class="text-warning text-left">VFD modules</h5>
+            <div class="row">
+                <div class="col">
+                    <app-vfd></app-vfd>
+                </div>
+                <div class="col">
+                    <app-vfd></app-vfd>
+                </div>
+                <div class="col">
+                    <app-vfd></app-vfd>
+                </div>
+                <div class="col">
+                    <app-vfd></app-vfd>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
+</div>
