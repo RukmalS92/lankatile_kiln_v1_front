@@ -23,7 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     DisplayboardModule,
     HistoryModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [ErrorHandlerService],
   bootstrap: [AppComponent]

@@ -1,40 +1,41 @@
-<!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-    <ng-container matColumnDef="Id">
-      <th mat-header-cell *matHeaderCellDef> Controller. </th>
-      <td mat-cell *matCellDef="let element"> {{element.controllerID}} </td>
-    </ng-container>
+  <div id="loading" *ngIf = "initialUpdate === false">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+  <div id="loaded" *ngIf = "initialUpdate === true">
+    <table style="width:100%">
+      <thead>
+        <tr>
+          <th>Logtime</th>
+          <th>TRC1</th>
+          <th>TRC2</th>
+          <th>TRC3</th>
+          <th>TRC4</th>
+          <th>TRC5</th>
+          <th>TRC6</th>
+          <th>TRC7</th>
+          <th>TRC8</th>
+          <th>TRC9</th>
+          <th>TRC10</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor = "let element of tempElementArray">
+          <td>{{element.logtime}}</td>
+          <td>{{element.t1}}</td>
+          <td>{{element.t2}}</td>
+          <td>{{element.t3}}</td>
+          <td>{{element.t4}}</td>
+          <td>{{element.t5}}</td>
+          <td>{{element.t6}}</td>
+          <td>{{element.t7}}</td>
+          <td>{{element.t8}}</td>
+          <td>{{element.t9}}</td>
+          <td>{{element.t10}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   
-    <ng-container matColumnDef="logtime">
-      <th mat-header-cell *matHeaderCellDef> Log Time </th>
-      <td mat-cell *matCellDef="let element"> {{element.logtime}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="temperature">
-      <th mat-header-cell *matHeaderCellDef> Temperature </th>
-      <td mat-cell *matCellDef="let element"> {{element.temperature}} </td>
-    </ng-container>
-  
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table> -->
-
-  <table style="width:100%">
-    <thead>
-      <tr>
-        <th>Controller id</th>
-        <th>Logtime</th>
-        <th>temperature</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor = "let element of tempElementArray">
-        <td>{{element.cid}}</td>
-        <td>{{element.logtime}}</td>
-        <td>{{element.temperature}}</td>
-      </tr>
-    </tbody>
-  </table>
   
 
   

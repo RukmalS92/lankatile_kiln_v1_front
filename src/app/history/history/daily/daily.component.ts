@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HistoryService } from '../../service/history.service'
 import { MatTableDataSource } from '@angular/material/table';
-
-
+import { MatProgressBar } from '@angular/material/progress-bar';
 
 //iterface is used to make the custom data_variables
 export interface temperatureController {
@@ -11,7 +10,6 @@ export interface temperatureController {
   logtime : String
 }
 
-
 //iterface is used to make the custom data_variables
 export interface PeriodicElement {
   name: string;
@@ -19,7 +17,6 @@ export interface PeriodicElement {
   weight: number;
   symbol: string;
 }
-
 
 const ELEMENT_DATA: any[] = [
   {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
@@ -44,7 +41,6 @@ const ELEMENT_DATA: any[] = [
   {position: 20, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
 ];
 
-
 @Component({
   selector: 'app-daily',
   templateUrl: './daily.component.html',
@@ -53,27 +49,30 @@ const ELEMENT_DATA: any[] = [
 
 export class DailyComponent implements OnInit {
 
-  tempElementArray : any[] = []
+  tempElementArray : any[] = [];
+  historyUpdateFlag : Number = 0;
 
-  displayedColumns: string[] = ['Id', 'logtime', 'temperature'];
+  initialUpdate : Boolean = false;
  
   constructor(private historyservice : HistoryService) { 
       historyservice.historySubject.subscribe(
         (data:any) => {
-          data.forEach(element => {
-            let eobject = {
-              cid : element.ctrlid,
-              logtime : element.logtime,
-              temperature : element.temperature
-            }
-            this.tempElementArray.push(eobject);
-          });
+          this.initialUpdate = true;
+          if(this.historyUpdateFlag === 0){
+            this.tempElementArray = data;
+            this.historyUpdateFlag = 1;
+          }
+          else if(this.historyUpdateFlag === 1){
+            this.tempElementArray.push(data);
+          }
           //console.log(this.tempElementArray)
+          this.historyservice.initialHistoryUpdateSubject.next('http://localhost:3000/temphistory?device=trcx&id=1&init=1')
         }
       )
   }
 
   ngOnInit(): void {
+    this.historyservice.updateTempHistory('http://localhost:3000/temphistory?device=trcx&id=1&init=0')
   }
 
 }
