@@ -1,0 +1,114 @@
+<div class="container-fluid">
+    <h2 class="text-primary text-center">Temperature Parameters</h2>
+    <form #temperature_settings = "ngForm" (ngSubmit) = "onFormSubmit(temperature_settings)" >
+        <div class="row">
+            <div class="col">
+                <div class="form-group"> 
+                    <label for="" class="text-dark">TRC1</label>
+                    <br>
+                    <label for="">Set Value</label>
+                    <input type="text" class="form-control" id="trc1_setvalue" name="trc1_setvalue" ngModel #x>
+                    <br>
+                    <label for="" id="trc1_presentvalue">Present Value : {{presentValue_trc[0]}}</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group"> 
+                    <label for="" class="text-dark">TRC2</label>
+                    <br>
+                    <label for="">Set Value</label>
+                    <input type="text" class="form-control" id="trc2_setvalue" name="trc2_setvalue" ngModel #x>
+                    <br>
+                    <label for="" id="trc2_presentvalue">Present Value : {{presentValue_trc[1]}}</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group"> 
+                    <label for="" class="text-dark">TRC3</label>
+                    <br>
+                    <label for="">Set Value</label>
+                    <input type="text" class="form-control" id="trc3_setvalue" name="trc3_setvalue" ngModel #x>
+                    <br>
+                    <label for="" id="trc3_presentvalue">Present Value : {{presentValue_trc[2]}}</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group"> 
+                    <label for="" class="text-dark">TRC4</label>
+                    <br>
+                    <label for="">Set Value</label>
+                    <input type="text" class="form-control" id="trc4_setvalue" name="trc4_setvalue" ngModel #x>
+                    <br>
+                    <label for="" id="trc4_presentvalue">Present Value : {{presentValue_trc[3]}}</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group"> 
+                    <label for="" class="text-dark">TRC5</label>
+                    <br>
+                    <label for="">Set Value</label>
+                    <input type="text" class="form-control" id="trc5_setvalue" name="trc5_setvalue" ngModel #x>
+                    <br>
+                    <label for="" id="trc5_presentvalue">Present Value : {{presentValue_trc[4]}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group"> 
+                    <label for="" class="text-dark">TRC6</label>
+                    <br>
+                    <label for="">Set Value</label>
+                    <input type="text" class="form-control" id="trc6_setvalue" name="trc6_setvalue" ngModel #x>
+                    <br>
+                    <label for="" id="trc6_presentvalue">Present Value : {{presentValue_trc[5]}}</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group"> 
+                    <label for="" class="text-dark">TRC7</label>
+                    <br>
+                    <label for="">Set Value</label>
+                    <input type="text" class="form-control" id="trc7_setvalue" name="trc7_setvalue" ngModel #x>
+                    <br>
+                    <label for="" id="trc7_presentvalue">Present Value : {{presentValue_trc[6]}}</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group"> 
+                    <label for="" class="text-dark">TRC8</label>
+                    <br>
+                    <label for="">Set Value</label>
+                    <input type="text" class="form-control" id="trc8_setvalue" name="trc8_setvalue" ngModel #x>
+                    <br>
+                    <label for="" id="trc8_presentvalue">Present Value : {{presentValue_trc[7]}}</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group"> 
+                    <label for="" class="text-dark">TRC9</label>
+                    <br>
+                    <label for="">Set Value</label>
+                    <input type="text" class="form-control" id="trc9_setvalue" name="trc9_setvalue" ngModel #x>
+                    <br>
+                    <label for="" id="trc9_presentvalue">Present Value : {{presentValue_trc[8]}}</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group"> 
+                    <label for="" class="text-dark">TRC10</label>
+                    <br>
+                    <label for="">Set Value</label>
+                    <input type="text" class="form-control" id="trc10_setvalue" name="trc10_setvalue" ngModel #x>
+                    <br>
+                    <label for="" id="trc10_presentvalue">Present Value : {{presentValue_trc[9]}}</label>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+        <br>
+        <small *ngIf = "responseStatus === ''"> {{temperatureDataUpdateStatus}} </small>
+        <small *ngIf = "responseStatus === 'success'" class="text-success"> {{temperatureDataUpdateStatus}} </small>
+        <small *ngIf = "responseStatus === 'fail'" class="text-danger"> {{temperatureDataUpdateStatus}} </small>
+    </form>
+</div>

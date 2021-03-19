@@ -1,17 +1,30 @@
-import { Injectable } from '@angular/core';
-import { interval, of, Subject } from 'rxjs';
+import { Injectable, OnDestroy, OnInit } from '@angular/core';
+import { interval, of, Subject, Subscription } from 'rxjs';
 import { map, catchError, retry } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { ErrorHandlerService } from '../../errorHandler/error-handler.service'
 
 @Injectable()
-export class HistoryService {
+export class HistoryService implements OnDestroy, OnInit {
+  //update time interval
+  updateTimeInterval = 10000;
+  //subscrption
+  tempHistorySubscription : Subscription = Subscription.EMPTY;
+  invHistorySubscription : Subscription = Subscription.EMPTY;
+  intervalSubscription : Subscription = Subscription.EMPTY;
+
+  initialTempHistoryURLUpdateSubscription : Subscription = Subscription.EMPTY;
+  initialINVHistoryURLUpdateSubscription : Subscription = Subscription.EMPTY;
+
   //history data update URL
-  historyFinalURL = "";
+  temphistoryFinalURL = "";
+  invhistoryFinalURL = "";
   //subject to update history data
-  historySubject = new Subject()
+  temphistorySubject = new Subject()
+  invhistorySubject = new Subject()
   //subject to update initial hitory update to tabel
-  initialHistoryUpdateSubject = new Subject()
+  initialTempHistoryURLUpdateSubject = new Subject()
+  initialINVHistoryURLUpdateSubject = new Subject()
   //multicast subject for temperature and vfd device data identification
   multicastDeviceSubject = new Subject()
 
@@ -19,35 +32,69 @@ export class HistoryService {
 
   constructor(private httpclient : HttpClient, private errorhandler : ErrorHandlerService) { 
     //intial flag update subscription
-    this.initialHistoryUpdateSubject.subscribe(
+    this.initialTempHistoryURLUpdateSubscription =  this.initialTempHistoryURLUpdateSubject.subscribe(
       (data:any) => {
-        //this.historyFinalURL = 'http://localhost:3000/temphistory?device=' + encodeURIComponent(data.device) + '&id=' + encodeURIComponent(data.id) + '&init=' + encodeURIComponent(data.initflag);
-        this.historyFinalURL = data;
+        this.temphistoryFinalURL = data;
+      }
+    )
+    this.initialINVHistoryURLUpdateSubscription = this.initialINVHistoryURLUpdateSubject.subscribe(
+      (data:any) => {
+        this.invhistoryFinalURL = data;
       }
     )
 
     //update histroy data on interval
-    interval(5000)
+    this.intervalSubscription = interval(this.updateTimeInterval)
     .subscribe(
       (data:any) => {
-        this.updateTempHistory(this.historyFinalURL)
+        this.updateTempHistory(this.temphistoryFinalURL)
+        this.updateINVhistory(this.invhistoryFinalURL)
       }
     )
   }
 
   //update temperature
   updateTempHistory = (historyURLencoded) => {
-    this.httpclient.get(historyURLencoded)
+    this.tempHistorySubscription = this.httpclient.get(historyURLencoded, {responseType : 'json'})
     .pipe(
-      retry(2),
-      map(d=>d),
+      retry(1),
+      map((data:any)=>data),
       catchError(this.errorhandler.handlerError)
     )
     .subscribe(
       (data:any) => {
-        this.historySubject.next(data);
+        this.temphistorySubject.next(data);
       }
     )
   }
 
+  //update inverter data
+  updateINVhistory = (historyURLencoded) => {
+    this.invHistorySubscription = this.httpclient.get(historyURLencoded, {responseType : 'json'})
+    .pipe(
+      retry(1),
+      map((data:any) => data),
+      catchError(this.errorhandler.handlerError)
+    )
+    .subscribe(
+      (data:any) => {
+        this.invhistorySubject.next(data)
+      }
+    )
+
+  }
+
+  ngOnInit() : void {
+
+  }
+
+  ngOnDestroy() : void {
+    this.tempHistorySubscription.unsubscribe()
+    this.intervalSubscription.unsubscribe()
+    this.initialTempHistoryURLUpdateSubject.unsubscribe()
+    this.initialTempHistoryURLUpdateSubscription.unsubscribe()
+  }
+
 }
+
+//this.historyFinalURL = 'http://localhost:3000/temphistory?device=' + encodeURIComponent(data.device) + '&id=' + encodeURIComponent(data.id) + '&init=' + encodeURIComponent(data.initflag);

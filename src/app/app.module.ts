@@ -8,10 +8,13 @@ import { AppComponent } from './app.component';
 import { DisplayboardModule } from './displayboard/displayboard.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HistoryModule } from './history/history.module';
+import { UpdateParamModule } from './update-param/update-param.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //services
 import { ErrorHandlerService } from './errorHandler/error-handler.service';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppServiceService } from './app-service/app-service.service';
+
 
 @NgModule({
   declarations: [
@@ -23,9 +26,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     DisplayboardModule,
     HistoryModule,
+    UpdateParamModule,
     BrowserAnimationsModule,
   ],
-  providers: [ErrorHandlerService],
+  providers: [ErrorHandlerService, AppServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

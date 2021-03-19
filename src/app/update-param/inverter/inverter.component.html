@@ -1,0 +1,42 @@
+<div class="container-fluid">
+    <h2 class="text-primary text-center">Temperature Parameters</h2>
+    <form #inverter_settings = "ngForm" (ngSubmit) = "onFormSubmit()" >
+        <div class="row">
+            <div class="col">
+                <div class="form-group"> 
+                    <label for="" class="text-dark">INV1</label>
+                    <br>
+                    <label for="">Set Value</label>
+                    <input type="text" class="form-control" id="inv1_setvalue" name="inv1_setvalue" ngModel #x>
+                    <br>
+                    <label for="" id="inv1_presentvalue">Present Value : {{123}}</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group"> 
+                    <label for="" class="text-dark">INV2</label>
+                    <br>
+                    <label for="">Set Value</label>
+                    <input type="text" class="form-control" id="inv2_setvalue" name="inv2_setvalue" ngModel #x>
+                    <br>
+                    <label for="" id="inv2_presentvalue">Present Value : {{123}}</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group"> 
+                    <label for="" class="text-dark">INV3</label>
+                    <br>
+                    <label for="">Set Value</label>
+                    <input type="text" class="form-control" id="inv3_setvalue" name="inv3_setvalue" ngModel #x>
+                    <br>
+                    <label for="" id="inv3_presentvalue">Present Value : {{123}}</label>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+        <br>
+        <small *ngIf = "responseStatus === ''">  </small>
+        <small *ngIf = "responseStatus === 'success'" class="text-success">  </small>
+        <small *ngIf = "responseStatus === 'fail'" class="text-danger"> </small>
+    </form>
+</div>

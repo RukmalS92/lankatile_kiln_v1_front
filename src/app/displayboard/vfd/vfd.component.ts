@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class VfdComponent implements OnInit {
   
-  @Input('vfdName') vfd_name : string = "Main Drive 1";
+  @Input('invid') invid : Number = 1;
   @Input('speed') speed : Number = 56;
 
   constructor() { }

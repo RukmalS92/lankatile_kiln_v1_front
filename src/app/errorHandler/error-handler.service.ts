@@ -17,7 +17,7 @@ export class ErrorHandlerService {
     else{
       e_message = "Error Code : " + error.status + "\n" + "Message : " + error.message;
     }
-    window.alert(e_message);
+    // window.alert(e_message);
     return throwError(e_message);
   }
 }

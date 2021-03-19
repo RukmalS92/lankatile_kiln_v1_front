@@ -6,10 +6,11 @@ import { HistorynavbarComponent } from '../history/historynavbar/historynavbar.c
 import { HistoryComponent } from './history/history.component';
 import { DailyComponent } from './history/daily/daily.component';
 import { HistoryService } from './service/history.service';
+import { InverterComponent } from './history/inverter/inverter.component';
 
 
 @NgModule({
-  declarations: [HistorynavbarComponent, HistoryComponent, DailyComponent],
+  declarations: [HistorynavbarComponent, HistoryComponent, DailyComponent, InverterComponent],
   imports: [
     CommonModule,
     HistoryRoutingModule,
