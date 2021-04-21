@@ -3,11 +3,21 @@ import { AppServiceService } from '../../app-service/app-service.service';
 import { Subscription } from 'rxjs';
 import { NgForm, NgModel } from '@angular/forms';
 import { UpdateServiceService } from '../update-service/update-service.service';
+import { Router } from "@angular/router";
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-temperature',
   templateUrl: './temperature.component.html',
-  styleUrls: ['./temperature.component.css']
+  styleUrls: ['./temperature.component.css'],
+  animations : [
+    trigger('fadeIn',[
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(5px)' }),
+        animate('700ms', style({ opacity: 1, transform: 'translateY(0)' })),
+      ])
+    ])
+  ]
 })
 export class TemperatureComponent implements OnInit, OnDestroy {
 
@@ -20,14 +30,17 @@ export class TemperatureComponent implements OnInit, OnDestroy {
   presentValue_trc : number[] = [];
 
   @ViewChild('temperature_settings') temperature_settings : NgForm;
-  @ViewChild('x') x : NgModel;
+  @ViewChild('trc1') trc1 : NgModel
+  // @ViewChild('x') x : NgModel;
 
   tempsubjectSubscription : Subscription = Subscription.EMPTY //EMPTY -> creating Subscription safely
   temperatureDataUpdateSubscription : Subscription = Subscription.EMPTY
+  tempSVRetrieveSubscription : Subscription = Subscription.EMPTY
 
   constructor(private appservice : AppServiceService, private updateservice : UpdateServiceService) { 
     this.tempsubjectSubscription = appservice.tempSubject.subscribe(
       (data:any) => {
+        this.presentValue_trc = []
         let temperatureDataArray = data.data;
         temperatureDataArray.forEach(temperatureElement => {
             this.presentValue_trc.push(temperatureElement[1]);
@@ -37,10 +50,17 @@ export class TemperatureComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    
+    this.tempSVRetrieveSubscription = this.updateservice.retrieveTemperatureSV().subscribe(
+      (data:any) => {
+        let values = Object.values(data)
+        let inputNameArray = ["trc1_setvalue","trc2_setvalue","trc3_setvalue",
+                              "trc4_setvalue","trc5_setvalue","trc6_setvalue",
+                              "trc7_setvalue","trc8_setvalue","trc9_setvalue", "trc10_setvalue"]
+        let x = Object.assign.apply({}, inputNameArray.map((v,i) => ({[v] : values[i]})))
+        this.temperature_settings.setValue(x)
+      }
+    )
   }
-
-  
 
   onFormSubmit(form : NgForm) : void {
     const values = Object.values(this.temperature_settings.value) //get values from js object {key : value}
@@ -76,6 +96,7 @@ export class TemperatureComponent implements OnInit, OnDestroy {
   ngOnDestroy() : void {
     this.tempsubjectSubscription.unsubscribe()
     this.temperatureDataUpdateSubscription.unsubscribe()
+    this.tempSVRetrieveSubscription.unsubscribe()
   }
 
   

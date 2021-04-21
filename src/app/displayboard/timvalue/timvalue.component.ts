@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TimvalueComponent implements OnInit {
 
-  @Input('timevalue') timevalue : number = 23
+  @Input('timevalue') timevalue : number;
 
   constructor() { }
 

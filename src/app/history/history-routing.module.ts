@@ -9,7 +9,7 @@ import { InverterComponent } from './history/inverter/inverter.component';
 /*
  * When using child router on root page below is the method to use.
    the child pages should be defined in children  
- */
+*/
 
 const routes: Routes = [
     {path : "history", 
