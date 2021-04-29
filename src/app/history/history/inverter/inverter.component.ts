@@ -22,7 +22,10 @@ export class InverterComponent implements OnInit, OnDestroy {
           this.initialUpdate = true; 
         }
         else{
-          this.invElementArray.push(data)
+          data.forEach(element => {
+            this.invElementArray.push(element)
+          });
+          
         }
       }
     )

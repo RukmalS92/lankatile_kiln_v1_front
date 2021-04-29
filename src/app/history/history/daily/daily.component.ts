@@ -42,7 +42,9 @@ export class DailyComponent implements OnInit, OnDestroy {
             this.historyservice.initialTempHistoryURLUpdateSubject.next('http://localhost:3000/temphistory?device=trcx&init=1')
           }
           else if(this.initialUpdate === true){
-            this.tempElementArray.push(data);
+            data.forEach(element => {
+              this.tempElementArray.push(element)
+            });
           }
         }
       )

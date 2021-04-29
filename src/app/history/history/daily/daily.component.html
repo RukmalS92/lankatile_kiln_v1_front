@@ -5,7 +5,8 @@
     <table style="width:100%; color: ivory;">
       <thead>
         <tr>
-          <th>Logtime</th>
+          <th>Date</th>
+          <th>Time</th>
           <th>TRC1</th>
           <th>TRC2</th>
           <th>TRC3</th>
@@ -20,17 +21,18 @@
       </thead>
       <tbody>
         <tr *ngFor = "let element of tempElementArray">
-          <td>{{element.logtime}}</td>
-          <td>{{element.t1}}</td>
-          <td>{{element.t2}}</td>
-          <td>{{element.t3}}</td>
-          <td>{{element.t4}}</td>
-          <td>{{element.t5}}</td>
-          <td>{{element.t6}}</td>
-          <td>{{element.t7}}</td>
-          <td>{{element.t8}}</td>
-          <td>{{element.t9}}</td>
-          <td>{{element.t10}}</td>
+          <td>{{element.date}}</td>
+          <td>{{element.time}}</td>
+          <td>{{element.temp_t1}}</td>
+          <td>{{element.temp_t2}}</td>
+          <td>{{element.temp_t3}}</td>
+          <td>{{element.temp_t4}}</td>
+          <td>{{element.temp_t5}}</td>
+          <td>{{element.temp_t6}}</td>
+          <td>{{element.temp_t7}}</td>
+          <td>{{element.temp_t8}}</td>
+          <td>{{element.temp_t9}}</td>
+          <td>{{element.temp_t10}}</td>
         </tr>
       </tbody>
     </table>

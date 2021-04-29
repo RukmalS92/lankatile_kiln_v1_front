@@ -22,7 +22,7 @@ export class DisplayComponent implements OnInit, OnDestroy {
   tempDataArray : any[] = []
   invIDArray : any[] = []
   invDataArray : any[] = []
-  timevalue : number = 999;
+  timevalue : number;
   tempsubjectSubscription : Subscription = Subscription.EMPTY;
   invubjectSubscription : Subscription = Subscription.EMPTY;
   timvalueSubjectSubscription : Subscription = Subscription.EMPTY;

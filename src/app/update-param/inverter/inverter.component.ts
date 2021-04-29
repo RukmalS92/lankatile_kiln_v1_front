@@ -75,7 +75,7 @@ export class InverterComponent implements OnInit, OnDestroy {
       inv2 : Number(inverterValues[1])
     }
     this.responseStatusInverters = "";
-    this.formUpdateStatusDisplayStringInverters = "Pending..."
+    this.formUpdateStatusDisplayStringInverters = "Pending...";
     this.inverterDataUpdateSubscription = this.updateservice.updateInverterSettings(iObject).subscribe(
       (response:any) => {
         this.responseStatusInverters = response.status;
