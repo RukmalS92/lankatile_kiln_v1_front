@@ -1,4 +1,4 @@
-<div class="container-fluid" @fadeIn>
+<div class="container-fluid" style="height: auto;" @fadeIn>
     <h2 class="text-primary text-center">Inverter Parameters</h2>
     <form #inverter_settings = "ngForm" (ngSubmit) = "onInverterSubmit()" >
         <div class="row">
@@ -31,9 +31,9 @@
         <button class="btn btn-primary" type="submit" *ngIf = "!inv1.value || !inv2.value" [disabled] = "true">Submit</button>
         <button class="btn btn-primary" type="submit" *ngIf = "inv1.value && inv2.value" [disabled] = "false">Submit</button>
         <br>
-        <small *ngIf = "responseStatusInverters === ''"> {{formUpdateStatusDisplayStringInverters}} </small>
-        <small *ngIf = "responseStatusInverters === 'success'" class="text-success"> {{formUpdateStatusDisplayStringInverters}} </small>
-        <small *ngIf = "responseStatusInverters === 'fail'" class="text-danger"> {{formUpdateStatusDisplayStringInverters}} </small>
+        <small *ngIf = "responseStatusInverters === ''" style="font-size: medium; color: whitesmoke;"> {{formUpdateStatusDisplayStringInverters}} </small>
+        <small *ngIf = "responseStatusInverters === 'success'"style="font-size: medium; color: greenyellow;"> {{formUpdateStatusDisplayStringInverters}} </small>
+        <small *ngIf = "responseStatusInverters === 'fail'" style="font-size: medium; color: tomato;"> {{formUpdateStatusDisplayStringInverters}} </small>
     </form>
     <br>
     <br>
@@ -48,29 +48,28 @@
                 <div class="form-group"> 
                     <label style="color: tomato; font-size: large; font-weight: bold;" for="">INV3</label>
                     <br>
-                    <label style="color: white;" for="">Set Value</label>
-                    <input style="background: transparent; font-size: x-large; color : yellow;" type="text" class="form-control text-center" id="inv3_setvalue" name="inv3_setvalue" ngModel #inv3 = "ngModel">
+                    <br>
                     <br>
                     <label style="color: thistle; font-size: large;" for="" id="inv3_presentvalue">Present Value : {{inverterValues[2]}}</label>
                 </div>
             </div>
             <div class="col">
-
-            </div>
-            <div class="col">
-                <label style="color: tomato; font-size: large; font-weight: bold;" for="">Time Value</label>
+                <label style="color: tomato; font-size: large; font-weight: bold;" for="">Cycle Time Value</label>
                 <br>
                 <label style="color: white;" for="">Set Value</label>
                 <input style="background: transparent; font-size: x-large; color : yellow;" type="text" class="form-control text-center" id="time_value_set" name="time_value_set" ngModel #tv = "ngModel">
                 <br>
                 <label style="color: thistle; font-size: large;" for="" id="time_value_present">Present Value : {{timeValue}}</label>
             </div>
+            <div class="col">
+                <button class="btn btn-primary" type="submit" *ngIf = "!tv.value" [disabled] = "true">Submit</button>
+                <button class="btn btn-primary" type="submit" *ngIf = "tv.value" [disabled] = "false">Submit</button>
+                <br>
+                <small *ngIf = "responseStatusTimeValue === ''" style="font-size: medium; color: whitesmoke;"> {{formUpdateStatusDisplayStringTimeValue}} </small>
+                <small *ngIf = "responseStatusTimeValue === 'success'" style="font-size: medium; color: greenyellow;">  {{formUpdateStatusDisplayStringTimeValue}}  </small>
+                <small *ngIf = "responseStatusTimeValue === 'fail'" style="font-size: medium; color: tomato;">  {{formUpdateStatusDisplayStringTimeValue}}  </small>
+            </div>
         </div>
-        <button class="btn btn-primary" type="submit" *ngIf = "!tv.value" [disabled] = "true">Submit</button>
-        <button class="btn btn-primary" type="submit" *ngIf = "tv.value" [disabled] = "false">Submit</button>
-        <br>
-        <small *ngIf = "responseStatusTimeValue === ''" style="font-size: medium; color: whitesmoke;"> {{formUpdateStatusDisplayStringTimeValue}} </small>
-        <small *ngIf = "responseStatusTimeValue === 'success'" style="font-size: medium; color: greenyellow;">  {{formUpdateStatusDisplayStringTimeValue}}  </small>
-        <small *ngIf = "responseStatusTimeValue === 'fail'" style="font-size: medium; color: tomato;">  {{formUpdateStatusDisplayStringTimeValue}}  </small>
+       
     </form>
 </div>

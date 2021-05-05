@@ -37,7 +37,7 @@ export class InverterComponent implements OnInit, OnDestroy {
   @ViewChild('timevalue_settings') timevalue_settings;
 
   constructor(private appservice : AppServiceService, private updateservice : UpdateServiceService) { 
-      this.invSubjectSubscription = appservice.invSubject.subscribe(
+      this.invSubjectSubscription = this.appservice.invSubject.subscribe(
         (data:any) => {
           // console.log( this.inverterValues)
           this.inverterValues = []
@@ -60,7 +60,6 @@ export class InverterComponent implements OnInit, OnDestroy {
 
           this.timevalue_settings.setValue(
             {
-              'inv3_setvalue' : data.inv3,
               'time_value_set' : data.timevalue
             }
           )
